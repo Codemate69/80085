@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Misc/ParallaxBackground.gd" type="Script" id=1]
+[ext_resource path="res://Main/assets/meteor.png" type="Texture" id=3]
+[ext_resource path="res://World/Asteroid.gd" type="Script" id=4]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_limit_end = Vector2( 34567, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 1094.0, -244.0 ]
+}
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 0, 1596 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( -218.945, 159.005 )
+scale = Vector2( 0.507812, 0.498437 )
+texture = ExtResource( 3 )
+offset = Vector2( 121, 3 )
+script = ExtResource( 4 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 704, -242 )
+texture = ExtResource( 3 )
+offset = Vector2( 121, 3 )
+script = ExtResource( 4 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 70, 680 )
+scale = Vector2( 0.18396, 0.165603 )
+texture = ExtResource( 3 )
+offset = Vector2( 121, 3 )
+script = ExtResource( 4 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 756, 606 )
+texture = ExtResource( 3 )
+offset = Vector2( 121, 3 )
+script = ExtResource( 4 )

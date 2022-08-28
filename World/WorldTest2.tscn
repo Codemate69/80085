@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Main/assets/meteor.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Asteroid.gd" type="Script" id=3]
+[ext_resource path="res://asset/Background_(good).png" type="Texture" id=4]
+[ext_resource path="res://World/ParallaxBackground.gd" type="Script" id=5]
+
+[node name="WorldTest2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 129, 263 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_limit_end = Vector2( 3409, 3045 )
+script = ExtResource( 5 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 890 )
+
+[node name="Background(good)" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 125.5, 304.5 )
+scale = Vector2( 0.498, 0.498 )
+texture = ExtResource( 4 )
+
+[node name="Asteroid5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 40, 263 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 237, 413 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 47, 520 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid10" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 196, 652 )
+rotation = 0.764454
+scale = Vector2( 1.03906, 1.03906 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 191.156, 125 )
+scale = Vector2( 0.65625, 0.625 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 44, 40 )
+rotation = 0.942478
+scale = Vector2( 1.8125, 1.8125 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )
+
+[node name="Asteroid11" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 205, -84 )
+rotation = -0.670206
+scale = Vector2( 1.8125, 1.8125 )
+texture = ExtResource( 1 )
+offset = Vector2( -1, 0 )
+script = ExtResource( 3 )

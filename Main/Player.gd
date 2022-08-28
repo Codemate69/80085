@@ -1,7 +1,7 @@
 extends KinematicBody2D
 #start of movement physics
 export var ACCELERATION = 5
-export var MAX_SPEED = 100
+export var MAX_SPEED = 200
 export var ROTATION_ACCELERATION = 1
 export var KNOCKBACK_POWER = 1
 var input_vector = Vector2()
@@ -30,11 +30,11 @@ func _jetpack_move(delta):
 	
 	input_vector = Vector2()
 	if Input.is_action_pressed("ui_right"):
-		rotation_dir += 0.05
+		rotation_dir += 0.025
 		boostersAnimation.play("RightBooster")
 		
 	elif Input.is_action_pressed("ui_left"):
-		rotation_dir -= 0.05
+		rotation_dir -= 0.025
 		boostersAnimation.play("LeftBooster")
 
 	elif Input.is_action_pressed("ui_up"):
