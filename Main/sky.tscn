@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main/assets/Seamless Back.PNG" type="Texture" id=1]
+[ext_resource path="res://Main/ParallaxBackground.gd" type="Script" id=2]
+[ext_resource path="res://Main/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main/sky.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+const width = 1500
+const height = 900
+const Ast = preload(\"res://asteroid.tscn\")
+var spawn_area= Rect2()
+
+# asteroid spawn time management 
+var delta = 2
+var offset = 0.5
+
+func _ready():
+	randomize()
+	spawn_area= Rect2(0,0,width, height)
+	set_next_spawn()
+
+func spawn_fasteroid():
+	var position = Vector2(randi()%width, randi()%height)
+	
+	var asteroid = Ast.instance()
+	asteroid.position = position 
+	$\"..\".add_child(asteroid)
+	
+	
+	return position
+	
+func set_next_spawn():
+	#generating a random spawn time
+	var next_time = delta + (randf()-0.5)*2 *offset 
+	$Timer.wait_time = next_time
+	$Timer.start()
+	
+func _on_Timer_timeout():
+	spawn_fasteroid()
+	set_next_spawn()
+	
+	pass # Replace with function body.
+
+
+
+
+#func _draw():
+#	var radius= 20
+#	draw_rect(spawn_area, Color(0.2,0.2,1.0,0.5))
+#	for i in range(25):
+#		draw_circle(spawn_asteroid(), radius, Color.red) 
+
+
+"
+
+[node name="sky" type="Node2D"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+script = ExtResource( 2 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+material = SubResource( 1 )
+motion_mirroring = Vector2( 310, 1116 )
+
+[node name="Background(good)" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 144, 568 )
+scale = Vector2( 0.62, 0.62 )
+texture = ExtResource( 1 )
+
+[node name="Background(good)2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 760, 568 )
+scale = Vector2( 0.62, 0.62 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Background(good)3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1376, 568 )
+scale = Vector2( 0.62, 0.62 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
+
+[node name="SpawnAsteroid" type="Node2D" parent="YSort"]
+position = Vector2( -8, 8 )
+script = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="YSort/SpawnAsteroid"]
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 15.0
+
+[connection signal="timeout" from="YSort/SpawnAsteroid/Timer" to="YSort/SpawnAsteroid" method="_on_Timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
