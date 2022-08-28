@@ -1,5 +1,6 @@
 # 80085
-Game 
+Astonaut Bash!! 
+By friendlyplant, Foref, and ;) 
 
 Asteroid asset credit to AXAssets on itch.io 
 https://axassets.itch.io/ 
